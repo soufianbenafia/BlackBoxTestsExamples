@@ -5,15 +5,6 @@ import org.junit.jupiter.api.Test;
 
 class BlackBoxTest_Template {
 
-	@Test
-	void testZero() {
-		/* Colors: YELLOW, GREEN, RED */ 
-		Color expected = Color.YELLOW;
-		int x = 5;
-		int y = 1;
-		Color actual = BlackBox.G(x, y);
-		assertEquals(expected, actual);
-	}
 	
 	@Test
 	void testCaseOne() {
@@ -75,7 +66,7 @@ class BlackBoxTest_Template {
 		assertEquals(expected, actual);
 	}
 	
-	//ungültige
+	//YELLOW
 	
 	@Test
 	void testCaseSeven() {
@@ -102,8 +93,8 @@ class BlackBoxTest_Template {
 	void testCaseNine() {
 		/* Colors: YELLOW, GREEN, RED */ 
 		Color expected = Color.YELLOW;
-		int x = 17;
-		int y = 8;
+		int x = 5;
+		int y = 1;
 		Color actual = BlackBox.G(x, y);
 		assertEquals(expected, actual);
 	}
@@ -113,13 +104,23 @@ class BlackBoxTest_Template {
 		/* Colors: YELLOW, GREEN, RED */ 
 		Color expected = Color.YELLOW;
 		int x = 17;
-		int y = -2;
+		int y = 8;
 		Color actual = BlackBox.G(x, y);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	void testCaseEleven() {
+		/* Colors: YELLOW, GREEN, RED */ 
+		Color expected = Color.YELLOW;
+		int x = 17;
+		int y = -2;
+		Color actual = BlackBox.G(x, y);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void testCaseTwelve() {
 		/* Colors: YELLOW, GREEN, RED */ 
 		Color expected = Color.YELLOW;
 		int x = 17;
