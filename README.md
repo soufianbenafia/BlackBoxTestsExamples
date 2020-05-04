@@ -1,2 +1,2 @@
 # BlackBoxTestsExamples
-Equivalence partitioning test example for WP Certified tester in HAW university
+Black box tests example for WP Certified tester in HAW university
