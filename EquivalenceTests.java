@@ -59,7 +59,7 @@ class BlackBoxTest_Template {
 	@Test
 	void testCaseSix() {
 		/* Colors: YELLOW, GREEN, RED */ 
-		Color expected = Color.YELLOW;
+		Color expected = Color.GREEN;
 		int x = 9;
 		int y = -1;
 		Color actual = BlackBox.G(x, y);
