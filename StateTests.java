@@ -1,89 +1,30 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class StateTest_Template {
 
-	@Test
-	void test() {
-		Statemachine.start(); 
-		Statemachine.getStateName(); //S1
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("c"); 
-		Statemachine.getStateName(); //S5
-		Statemachine.getStateEvents();
-		Statemachine.transition("b"); 
-		Statemachine.getStateName(); //S2
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("c");
-		Statemachine.getStateName(); //S4
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("d");
-		Statemachine.getStateName(); //S6
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("b");
-		Statemachine.getStateName(); //S3
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("b");
-		String stateName = Statemachine.getStateName(); //S1
-
-		assertEquals("S1", stateName);
+	public static Collection<Object[]> transitionsDataProvider() {
+		return Arrays.asList(new Object[][] { { new String[] { "c", "b", "c", "d", "b", "b" }, "S1" },
+				{ new String[] { "d", "d", "b", "a" }, "Final" }, { new String[] { "c", "a" }, "Final" },
+				{ new String[] { "b", "c", "a" }, "Final" }, });
 	}
-	
-	@Test
-	void test2() {
-		Statemachine.start(); 
-		Statemachine.getStateName(); //S1
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("d"); 
-		Statemachine.getStateName(); //S3
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("d");
-		Statemachine.getStateName(); //S4
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("b");
-		Statemachine.getStateName(); //S2
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("a");
-			
-		String stateName = Statemachine.getStateName(); //FINAL
 
-		assertEquals("Final", stateName);
-	}
-	
+	@ParameterizedTest
+	@MethodSource("transitionsDataProvider")
+	void testStateTransition(String[] string, String expected) {
+		Statemachine.start();
+		for (String k : string) {
+			Statemachine.transition(k);
+		}
 
-	@Test
-	void test3() {
-		Statemachine.start(); 
-		Statemachine.getStateName(); //S1
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("c"); 
-		Statemachine.getStateName(); //S5
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("a");
-			
-		String stateName = Statemachine.getStateName(); //FINAL
-
-		assertEquals("Final", stateName);
-	}
-	
-	@Test
-	void test4() {
-		Statemachine.start(); 
-		Statemachine.getStateName(); //S1
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("b"); 
-		Statemachine.getStateName(); //S2
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("c");
-		Statemachine.getStateName(); //S4
-		Statemachine.getStateEvents(); 
-		Statemachine.transition("a");
-			
-		String stateName = Statemachine.getStateName(); //FINAL
-
-		assertEquals("Final", stateName);
+		String stateName = Statemachine.getStateName();
+		assertEquals(expected, stateName);
 	}
 
 	// ------- DO NOT TOUCH BELOW THIS LINE -------
@@ -91,5 +32,4 @@ class StateTest_Template {
 	static void tearDownAfterClass() throws Exception {
 		assertTrue(Statemachine.evalCoverage(), "There are states or transitions left to cover!");
 	}
-
 }
